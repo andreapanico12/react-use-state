@@ -1,25 +1,20 @@
 import { useState } from "react";
 import Languages from "../data/Languages";
+import Buttons from "./Buttons";
+import Content from "./Content";
 
 const Main = () => {
+
+const [ selected, setSelected] = useState(null);
+
+const showedContent = selected ? Languages.find(item => item.id === selected) : null;
   
   return(
     <main>
       <div className="container">
         <h1>Learn Web Development</h1>
-        <div className="tabs">
-          {Languages.map(item => (
-            <button key={item.id}>
-              {item.title}
-              </button>
-
-          ))}
-
-        </div>
-        <div className="content">
-          <h2></h2>
-          <p></p>
-        </div>
+        <Buttons languages={Languages} selected= {selected} onSelect= {setSelected}/>
+        <Content content= {showedContent}/>
 
       </div>
 
